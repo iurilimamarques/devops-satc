@@ -82,4 +82,4 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
-          SONAR_PROJECT_KEY: usuario
+          SONAR_PROJECT_KEY: iurilimamarques_devops-satc
