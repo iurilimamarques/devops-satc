@@ -22,6 +22,9 @@ jobs:
 
       - name: build
         run: docker build -t iurilima/devops-satc:0.0.1 .
+      
+      - name: push
+        run: docker push docker.io/iurilima/devops-satc:0.0.1
 
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@v2
