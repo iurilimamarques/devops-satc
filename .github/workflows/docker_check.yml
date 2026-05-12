@@ -55,15 +55,16 @@ jobs:
       - name: Analyze Trivy results
         run: |
           if [ -f trivy-results.json ]; then
-            VULN_COUNT=$(jq '[.Results[].Vulnerabilities[] | select(.Severity == "MEDIUM")] | length' trivy-results.json)
-            echo "Quantidade de vulnerabilidades mÃ©dias: $VULN_COUNT"
+            VULN_COUNT=$(jq '[.Results[]?.Vulnerabilities[]? | select(.Severity == "MEDIUM")] | length' trivy-results.json)
+
+            echo "Quantidade de vulnerabilidades médias: $VULN_COUNT"
 
             if [ "$VULN_COUNT" -gt 1000 ]; then
-              echo "Pipeline bloqueada: mais de 1000 vulnerabilidades mÃ©dias encontradas."
+              echo "Pipeline bloqueada: mais de 1000 vulnerabilidades médias encontradas."
               exit 1
             fi
           else
-            echo "Arquivo de resultados do Trivy nÃ£o encontrado."
+            echo "Arquivo de resultados do Trivy não encontrado."
             exit 1
           fi
 
